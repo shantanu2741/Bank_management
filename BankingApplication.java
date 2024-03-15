@@ -1,0 +1,126 @@
+import java.util.Scanner;
+
+public class BankingApplication1
+{
+  public static void main(String args[])
+   {
+     Scanner sc=new Scanner(System.in);
+     BankAccount b1=new BankAccount("a","01");
+     b1.showmenu();
+   }
+}
+class BankAccount
+{
+  int balance;
+  int previousTransaction;
+  String cust_name;
+  String cust_id;
+  
+
+    BankAccount(String cname,String cid)
+     {
+
+       cust_name=cname;
+       cust_id=cid;
+      
+
+     }
+       
+  
+   void deposite(int amount)
+    {
+      if(amount!=0)
+      {
+        balance=balance+amount;
+       previousTransaction = amount;
+      }
+    }
+   void withdraw(int amount)
+    {
+      if(amount!=0)
+       {
+        balance=balance-amount;
+        previousTransaction = -amount;
+       }
+    }
+  void gatpreviousTransaction()
+   {
+     if(previousTransaction>0)
+       {
+        System.out.println("Deposited:"+previousTransaction);
+       }
+      else
+       {
+         if(previousTransaction<0)
+          {
+           System.out.println("withdraw:"+Math.abs(previousTransaction));
+          }
+         else
+           {
+             System.out.println("no transation is occured");
+           }
+       } 
+    }
+    void showmenu()
+     {
+      char option='\0';
+      Scanner sc=new Scanner(System.in);
+      System.out.println("welcome"+cust_name);
+      System.out.println("your id is="+cust_id);
+      System.out.println();
+      System.out.println("A. check balance");
+      System.out.println("B. deposite");
+      System.out.println("C. withdraw");
+      System.out.println("D. previous transaction");
+      System.out.println("E. exit");
+      
+      do
+        {
+       
+           System.out.println("======================");
+           System.out.println("enter the option");
+           System.out.println("======================");
+           option =sc.next().charAt(0);
+           Character.toUpperCase(option);
+           
+           switch (option)
+            {
+              case 'A':
+                       System.out.println("======================");
+                       System.out.println("balanceis:"+balance);
+                       System.out.println("======================");
+                       System.out.println();
+                       break;
+              
+              case 'B':
+                       System.out.println("======================");
+                       System.out.println("enter the amount to deposite");
+                       System.out.println("======================"); 
+                       int amount=sc.nextInt();
+                       deposite(amount);
+                        System.out.println();
+                        break;
+              case 'C':
+                       System.out.println("======================");
+                       System.out.println("enter the amount to withdraw");
+                       System.out.println("======================");  
+                       int amount2=sc.nextInt();
+                       withdraw(amount2);
+                       System.out.println();
+                       break;
+            case 'D':
+                     System.out.println("======================");
+                     gatpreviousTransaction();
+                      System.out.println("======================");
+                      break;
+            case 'E':
+                     System.out.println("======================");
+                      break;
+                   
+            
+           }
+
+        }while (option!='E');
+   } 
+ 
+}
